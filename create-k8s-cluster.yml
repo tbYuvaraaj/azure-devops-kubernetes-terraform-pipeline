@@ -1,0 +1,13 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Pipeline to create Kubeernetes cluster in Azure'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Azure.ssh.pub'
+
