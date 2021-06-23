@@ -8,6 +8,7 @@ steps:
 - script: echo Hello, world!
   displayName: 'Pipeline to create Kubeernetes cluster in Azure'
 - task: DownloadSecureFile@1
+  name: publickey
   inputs:
-    secureFile: 'Azure.ssh.pub'
+    secureFile: 'Azure_ssh.pub'
 
