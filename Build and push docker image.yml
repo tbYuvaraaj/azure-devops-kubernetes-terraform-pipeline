@@ -49,5 +49,13 @@ stages:
         artifactName: 'manifests'
         itemPattern: '**/*.yaml'
         targetPath: '$(Systems.ArtifactsDirectory)'
+        
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'connect-to-K8S-cluster'
+        namespace: 'default'
+        manifests: '$(Systems.ArtifactsDirectory)/configuration/kubernetes/deployment.yaml'
+        containers: 'tbyuvaraaj/greeting-app-3:$(tag)'
 
 
