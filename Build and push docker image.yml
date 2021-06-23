@@ -33,5 +33,21 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'manifests'
         publishLocation: 'Container'
+        
+
+- stage: Deploy
+  displayName: Deploy to K8S
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps: 
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'manifests'
+        itemPattern: '**/*.yaml'
+        targetPath: '$(Systems.ArtifactsDirectory)'
 
 
